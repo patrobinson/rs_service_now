@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = RsServiceNow::VERSION
   spec.authors       = ["nemski"]
   spec.email         = ["nemski.rabbit@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.summary       = %q{A Ruby Soap ServiceNow interface.}
+  spec.description   = %q{A library for exporting data from ServiceNow}
+  spec.homepage      = "https://github.com/nemski/rs_service_now"
+  spec.license       = "BSD"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -20,4 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
+
+  spec.add_runtime_dependency "savon", "~> 2.0"
+  spec.add_runtime_dependency "activesupport"
 end

@@ -34,7 +34,7 @@ sn.request :encoded_query => "active=true"
 ```
 
 ### Export
-Retrieve a data export from Service-Now. Should be more efficient than Retrieve as by default it can export 10000 records at a time, instead of 250.
+Retrieve a data export from Service-Now. Should be more efficient than Retrieve as by default it can export 10000 records at a time, instead of 250. This is experimental at the moment that has not been thoroughly tested.
 
 ```ruby
 sn.export :encoded_query => "active=true"

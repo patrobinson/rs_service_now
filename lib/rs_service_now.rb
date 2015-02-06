@@ -1,7 +1,6 @@
-require "rs_service_now/version"
-require "rs_service_now/record"
-require "rs_service_now/company"
-require "rs_service_now/ci  "
+[ 'version', 'record', 'common', 'company', 'ci' ].each do |file|
+  require "rs_service_now/#{file}"
+end
 
 module RsServiceNow
 

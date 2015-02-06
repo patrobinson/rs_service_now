@@ -53,6 +53,7 @@ module RsServiceNow
       end
 
     end
+
     describe '#_export' do
       let(:dummy_open) { Object.new }
       let(:multi_record_hash) { (0..251).map { |n| make_record_hash n } }
@@ -110,6 +111,26 @@ module RsServiceNow
         end
       end
 
+    end
+
+    describe '#get' do
+      let(:dummy_client) { Object.new }
+      let(:dummy_response) { Object.new }
+      let(:get_response) { make_record_hash }
+      let(:dummy_response_hash) { {:envelope => {:body => {:get_response => get_response } } } }
+      let(:sys_id) { "deadbeefdeadbeefdeadbeefdeadbeef" }
+
+      before :each do
+        allow( subject ).to receive(:setup_client).and_return(dummy_client)
+        allow( dummy_response ).to receive(:hash).and_return(dummy_response_hash)
+        allow( dummy_client ).to receive(:call).and_return(dummy_response)
+      end
+
+      it 'should return a hash' do
+        expect( dummy_client ).to receive(:call).with(:get, :message => {:sys_id => sys_id})
+
+        expect( subject._get("core_company", sys_id) ).to be == get_response
+      end
     end
   end
 end

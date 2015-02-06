@@ -67,6 +67,12 @@ class RsServiceNow::Record
     response.hash[:envelope][:body][:get_keys_response]
   end
 
+  def _get table, sys_id
+    client = setup_client table
+    response = client.call(:get, :message => {:sys_id => sys_id})
+    response.hash[:envelope][:body][:get_response]
+  end
+
   def setup_client table
     Savon.client do |globals|
       globals.wsdl "#{@url}/#{table}.do?WSDL"

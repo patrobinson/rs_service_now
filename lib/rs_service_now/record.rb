@@ -87,4 +87,13 @@ class RsServiceNow::Record
     response = client.call(:insert, :message => parameters)
     response.hash[:envelope][:body][:insert_response][:sys_id]
   end
+
+  def _update table, parameters
+    if parameters[:sys_id].nil?
+      raise "You must supply the sys_id of the record to update"
+    end
+
+    client = setup_client table
+    client.call(:update, :message => parameters)
+  end
 end

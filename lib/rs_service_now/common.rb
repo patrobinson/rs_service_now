@@ -15,5 +15,9 @@ class RsServiceNow::Common < RsServiceNow::Record
     define_method('insert') do |parameters|
       self._insert table, parameters
     end
+
+    define_method('update') do |parameters|
+      self._update table, parameters
+    end
   end
 end

@@ -160,5 +160,27 @@ module RsServiceNow
       end
     end
 
+    describe '#_update' do
+            let(:dummy_client) { Object.new }
+      let(:dummy_response) { Object.new }
+      let(:update_response) { make_insert_response_hash }
+      let(:update_request) { 
+        {
+          :active => true,
+        }
+      }
+
+      before :each do
+        allow( subject ).to receive(:setup_client).and_return(dummy_client)
+        allow( dummy_response ).to receive(:hash).and_return(update_response)
+        allow( dummy_client ).to receive(:call).and_return(dummy_response)
+      end
+
+      it 'should update the record' do
+        expect( dummy_client ).to receive(:call).with(:insert, :message => update_request)
+        subject._insert("incident", update_request)
+      end
+    end
+
   end
 end

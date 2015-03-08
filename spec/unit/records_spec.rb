@@ -132,5 +132,33 @@ module RsServiceNow
         expect( subject._get("core_company", sys_id) ).to be == get_response
       end
     end
+
+    describe '#_insert' do
+      let(:dummy_client) { Object.new }
+      let(:dummy_response) { Object.new }
+      let(:insert_response) { make_insert_response_hash }
+      let(:insert_request) { 
+        {
+          :active => true,
+          :assigned_to => "me",
+          :cmdb_ci => "router1",
+          :severity => 1,
+          :urgency => 1,
+        }
+      }
+
+      before :each do
+        allow( subject ).to receive(:setup_client).and_return(dummy_client)
+        allow( dummy_response ).to receive(:hash).and_return(insert_response)
+        allow( dummy_client ).to receive(:call).and_return(dummy_response)
+      end
+
+      it 'should return a sys_id' do
+        expect( dummy_client ).to receive(:call).with(:insert, :message => insert_request)
+
+        expect( subject._insert("incident", insert_request) ).to be == "deadbeefdeadbeefdeadbeefdeadbeef"
+      end
+    end
+
   end
 end

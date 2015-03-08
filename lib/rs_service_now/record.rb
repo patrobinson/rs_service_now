@@ -81,4 +81,10 @@ class RsServiceNow::Record
       globals.namespace_identifier :u
     end
   end
+
+  def _insert table, parameters
+    client = setup_client table
+    response = client.call(:insert, :message => parameters)
+    response.hash[:envelope][:body][:insert_response][:sys_id]
+  end
 end

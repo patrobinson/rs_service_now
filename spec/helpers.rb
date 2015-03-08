@@ -112,4 +112,31 @@ EOF
       "zip"=>nil
     }
   end
+
+  def make_insert_response_xml
+    <<EOF
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inc="http://www.service-now.com/incident">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inc:insertResponse>
+         <inc:sys_id>deadbeefdeadbeefdeadbeefdeadbeef</inc:sys_id>
+         <inc:number>1</inc:number>
+      </inc:insertResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+EOF
+  end
+
+  def make_insert_response_hash
+    { 
+      :envelope => { 
+        :body => { 
+          :insert_response => {
+            :sys_id => "deadbeefdeadbeefdeadbeefdeadbeef",
+            :number => 1,
+          }
+        }
+      }
+    }
+  end
 end

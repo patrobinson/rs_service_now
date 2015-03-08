@@ -11,5 +11,9 @@ class RsServiceNow::Common < RsServiceNow::Record
     define_method('request') do |encoded_query|
       self._request table, encoded_query
     end
+
+    define_method('insert') do |parameters|
+      self._insert table, parameters
+    end
   end
 end

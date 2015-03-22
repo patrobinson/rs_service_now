@@ -4,10 +4,11 @@ require 'active_support/core_ext/hash/conversions'
 
 class RsServiceNow::Record
 
-  def initialize user, password, instance
+  def initialize user, password, instance, proxy = nil
     @user = user
     @password = password
     @url = "https://#{instance}.service-now.com"
+    @proxy = proxy
   end
 
   def _request table, encoded_query
@@ -79,6 +80,9 @@ class RsServiceNow::Record
       globals.basic_auth [@user, @password]
       globals.convert_request_keys_to :none
       globals.namespace_identifier :u
+      if @proxy
+        globals.proxy proxy
+      end
     end
   end
 

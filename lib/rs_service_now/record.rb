@@ -81,7 +81,7 @@ class RsServiceNow::Record
       globals.convert_request_keys_to :none
       globals.namespace_identifier :u
       if @proxy
-        globals.proxy proxy
+        globals.proxy @proxy
       end
     end
   end

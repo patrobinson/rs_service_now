@@ -30,14 +30,14 @@ Get every field from matching records. This is a quick way to retrieve any numbe
 Using an encodedQuery. This can be easily retrieved by conducting a search in Service-Now, right clicking the very end of the search string and selecting "Copy query"
 
 ```ruby
-sn.request :encoded_query => "active=true"
+sn.request "active=true"
 ```
 
 ### Export
 Retrieve a data export from Service-Now. Should be more efficient than Retrieve as by default it can export 10000 records at a time, instead of 250. This is experimental at the moment that has not been thoroughly tested.
 
 ```ruby
-sn.export :encoded_query => "active=true"
+sn.export "active=true"
 ```
 
 ## Contributing
